@@ -74,7 +74,7 @@ def load_graph(graph_number: int) -> Graph | None:
     Build the filename from *graph_number*, load the graph, and return it.
     Returns None if loading fails (file not found or malformed).
     """
-    filename = f"example_graph{graph_number}.txt"
+    filename = f"graph {graph_number}.txt"
     filepath = os.path.normpath(os.path.join(GRAPHS_DIR, filename))
 
     print(f"\n  Loading graph from: {filepath}")
@@ -138,7 +138,7 @@ def main() -> None:
     while True:
         # --- Step 1: choose a graph ----------------------------------------
         print()
-        graph_number = prompt_int("Select graph number (e.g. 1 for example_graph1.txt): ", 1)
+        graph_number = prompt_int("Select graph number (e.g. 1 for graph1.txt): ", 1)
 
         graph = load_graph(graph_number)
         if graph is None:

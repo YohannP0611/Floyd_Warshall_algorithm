@@ -1,0 +1,181 @@
+============================================================
+  Floyd-Warshall Shortest Path Algorithm
+============================================================
+
+=== Graph 1 (example_graph1.txt) ===
+  4 vertices, 5 edges, no negative cycle
+
+User input:  1
+  Loading graph from: graphs/example_graph1.txt
+  Graph loaded: 4 vertices, 5 edges.
+------------------------------------------------------------
+
+  Adjacency matrix (initial graph):
+                v0      v1      v2      v3
+          --------------------------------
+      v0 |       0       0     INF     INF
+      v1 |      12       0     INF     INF
+      v2 |     -25       7       0     INF
+      v3 |     INF      25     INF       0
+------------------------------------------------------------
+
+  Running Floyd-Warshall algorithm...
+
+Distance matrix L (shortest-path weights):
+==========================================
+                v0      v1      v2      v3
+          --------------------------------
+      v0 |       0       0     INF     INF
+      v1 |      12       0     INF     INF
+      v2 |     -25     -25       0     INF
+      v3 |      37      25     INF       0
+
+Predecessor matrix P:
+==========================================
+                v0      v1      v2      v3
+          --------------------------------
+      v0 |       0       0       -       -
+      v1 |       1       1       -       -
+      v2 |       2       0       2       -
+      v3 |       1       3       -       3
+------------------------------------------------------------
+
+  No absorbing cycle detected.
+  All shortest-path distances are valid.
+
+  Query shortest paths? (y/n): y
+------------------------------------------------------------
+
+  Shortest path query
+  Enter source vertex (0-3): 0
+  Enter target vertex (0-3): 1
+  Shortest path : v0 -> v1
+  Total distance: 0
+
+  Query another path? (y/n): y
+------------------------------------------------------------
+
+  Shortest path query
+  Enter source vertex (0-3): 3
+  Enter target vertex (0-3): 0
+  Shortest path : v3 -> v1 -> v0
+  Total distance: 37
+
+  Query another path? (y/n): n
+------------------------------------------------------------
+
+  Process another graph? (y/n): y
+
+=== Graph 2 (example_graph2.txt) ===
+  5 vertices, 7 edges, no negative cycle
+
+User input:  2
+  Loading graph from: graphs/example_graph2.txt
+  Graph loaded: 5 vertices, 7 edges.
+------------------------------------------------------------
+
+  Adjacency matrix (initial graph):
+                v0      v1      v2      v3      v4
+          ----------------------------------------
+      v0 |       0       3       8     INF     INF
+      v1 |     INF       0     INF       1     INF
+      v2 |     INF       4       0     INF     INF
+      v3 |       2     INF      -5       0     INF
+      v4 |     INF     INF     INF       6       0
+------------------------------------------------------------
+
+  Running Floyd-Warshall algorithm...
+
+Distance matrix L (shortest-path weights):
+==================================================
+                v0      v1      v2      v3      v4
+          ----------------------------------------
+      v0 |       0       3      -1       4     INF
+      v1 |       3       0      -4       1     INF
+      v2 |       7       4       0       5     INF
+      v3 |       2      -1      -5       0     INF
+      v4 |       8       5       1       6       0
+
+Predecessor matrix P:
+==================================================
+                v0      v1      v2      v3      v4
+          ----------------------------------------
+      v0 |       0       0       3       1       -
+      v1 |       3       1       3       1       -
+      v2 |       3       2       2       1       -
+      v3 |       3       2       3       3       -
+      v4 |       3       2       3       4       4
+------------------------------------------------------------
+
+  No absorbing cycle detected.
+  All shortest-path distances are valid.
+
+  Query shortest paths? (y/n): y
+------------------------------------------------------------
+
+  Shortest path query
+  Enter source vertex (0-4): 0
+  Enter target vertex (0-4): 4
+  No path exists from v0 to v4.
+
+  Query another path? (y/n): y
+------------------------------------------------------------
+
+  Shortest path query
+  Enter source vertex (0-4): 4
+  Enter target vertex (0-4): 0
+  Shortest path : v4 -> v3 -> v0
+  Total distance: 8
+
+  Query another path? (y/n): n
+------------------------------------------------------------
+
+  Process another graph? (y/n): y
+
+=== Graph 3 (example_graph3.txt) ===
+  4 vertices, 5 edges, contains a negative cycle (v1->v2->v3->v1)
+
+User input:  3
+  Loading graph from: graphs/example_graph3.txt
+  Graph loaded: 4 vertices, 5 edges.
+------------------------------------------------------------
+
+  Adjacency matrix (initial graph):
+                v0      v1      v2      v3
+          --------------------------------
+      v0 |       0       1     INF      10
+      v1 |     INF       0      -3     INF
+      v2 |     INF     INF       0       1
+      v3 |     INF      -2     INF       0
+------------------------------------------------------------
+
+  Running Floyd-Warshall algorithm...
+
+Distance matrix L (shortest-path weights):
+==========================================
+                v0      v1      v2      v3
+          --------------------------------
+      v0 |       0      -3      -6      -5
+      v1 |     INF      -4      -7      -6
+      v2 |     INF      -1      -4      -3
+      v3 |     INF      -6      -9      -8
+
+Predecessor matrix P:
+==========================================
+                v0      v1      v2      v3
+          --------------------------------
+      v0 |       0       3       1       2
+      v1 |       -       3       1       2
+      v2 |       -       3       1       2
+      v3 |       -       3       1       2
+------------------------------------------------------------
+
+  *** ABSORBING (NEGATIVE) CYCLE DETECTED ***
+  The graph contains a negative cycle.
+  Shortest paths are not well-defined for all vertex pairs.
+------------------------------------------------------------
+
+  Process another graph? (y/n): n
+============================================================
+  Goodbye!
+============================================================

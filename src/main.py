@@ -43,6 +43,25 @@ def separator(char: str = '-', width: int = 60) -> None:
     print(char * width)
 
 
+def prompt_yes_no(msg: str) -> bool:
+    """
+    Prompt the user for a yes/no answer, repeating until 'y' or 'n' is entered.
+
+    Parameters
+    ----------
+    msg : Prompt text displayed to the user (should include '(y/n)').
+
+    Returns
+    -------
+    True if the user answered 'y', False if 'n'.
+    """
+    while True:
+        answer = input(msg).strip().lower()
+        if answer in ('y', 'n'):
+            return answer == 'y'
+        print("  Please enter 'y' or 'n'.")
+
+
 def prompt_int(msg: str, min_val: int | None = None, max_val: int | None = None) -> int:
     """
     Prompt the user for an integer, repeating until a valid value is entered.
@@ -120,8 +139,7 @@ def path_query_loop(graph: Graph, L: list, P: list) -> None:
                 print(f"\n  Shortest path : {path_str}")
                 print(f"  Total distance: {dist}")
 
-        again = input("\n  Query another path? (y/n): ").strip().lower()
-        if again != 'y':
+        if not prompt_yes_no("\n  Query another path? (y/n): "):
             break
 
 
@@ -142,8 +160,7 @@ def main() -> None:
 
         graph = load_graph(graph_number)
         if graph is None:
-            retry = input("  Try another graph? (y/n): ").strip().lower()
-            if retry != 'y':
+            if not prompt_yes_no("  Try another graph? (y/n): "):
                 break
             continue
 
@@ -174,14 +191,12 @@ def main() -> None:
             print("  All shortest-path distances are valid.")
 
             # --- Step 5: path queries ----------------------------------------
-            want_path = input("\n  Query shortest paths? (y/n): ").strip().lower()
-            if want_path == 'y':
+            if prompt_yes_no("\n  Query shortest paths? (y/n): "):
                 path_query_loop(graph, L, P)
 
         # --- Step 6: process another graph? ----------------------------------
         separator()
-        another = input("\n  Process another graph? (y/n): ").strip().lower()
-        if another != 'y':
+        if not prompt_yes_no("\n  Process another graph? (y/n): "):
             break
 
     separator('=')
